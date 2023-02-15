@@ -5,25 +5,219 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Project Demo Site</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="./css/base.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./fonts/fontawesome-free-5.15.4-web/css/all.min.css">
-        <link rel="stylesheet" href="./css/grid.css">
-        <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./fonts/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="./css/grid.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/carousel.css">
+    <link rel="stylesheet" href="./css/character_card.css">
+    <link rel="stylesheet" href="./css/popup.css">
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #131313;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            /* Internet Explorer 10+ */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+
+        .container {
+            justify-content: space-between;
+            position: relative;
+            display: flex;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .container .card {
+            position: relative;
+            width: 320px;
+            height: 450px;
+            background: #232323;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .container .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            clip-path: circle(150px at 80% 20%);
+            transition: 0.5s ease-in-out;
+        }
+
+        .container .card:hover:before {
+            clip-path: circle(300px at 80% -20%);
+        }
+
+        .container .card .imgBx {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            width: 100%;
+            height: 220px;
+            transition: 0.5s;
+        }
+
+        .container .card:hover {
+            top: 0%;
+            transform: translateY(0%);
+
+        }
+
+        .container .card .imgBx img {
+            position: absolute;
+            top: -50%;
+            left: 30px;
+            width: 100%;
+        }
+
+        .container .card .contentBx {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            text-align: center;
+            transition: 1s;
+            z-index: 10;
+        }
+
+        .container .card:hover .contentBx {
+            height: 210px;
+        }
+
+        .container .card .contentBx h2 {
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #fff;
+            margin: 0;
+        }
+
+        .container .card .contentBx .size,
+        .container .card .contentBx .color {
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            transition: 0.5s;
+            opacity: 0;
+            visibility: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .container .card:hover .contentBx .size {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0.5s;
+        }
+
+        .container .card:hover .contentBx .color {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0.6s;
+        }
+
+        .container .card .contentBx .size h3,
+        .container .card .contentBx .color h3 {
+            color: #fff;
+            font-weight: 300;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 10px;
+        }
+
+        .container .card .contentBx .size span {
+            width: 26px;
+            height: 26px;
+            text-align: center;
+            line-height: 26px;
+            font-size: 14px;
+            display: inline-block;
+            color: #111;
+            background: #fff;
+            margin: 0 5px;
+            transition: 0.5s;
+            color: #111;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .container .card .contentBx .size span:hover {
+            background: #9bdc28;
+        }
+
+        .container .card .contentBx .color span {
+            width: 20px;
+            height: 20px;
+            background: #ff0;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .container .card .contentBx a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #fff;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #111;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 0.5s;
+            margin-top: 0;
+        }
+
+        .container .card:hover .contentBx a {
+            opacity: 1;
+            transform: translateY(0px);
+            transition-delay: 0.75s;
+
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app">
+    <div class="app">
         <div id="header">
             <div class="header-nav">
                 <div class="header-nav-left">
                     <div class="logo">
-                        <img src="./img/logo.webp" alt="">
+                        <img src="https://webusstatic.yo-star.com/ark_us_web/pc/img/item_rhodes.c10125c5.png" alt="">
                     </div>
                     <ul class="header-nav-left__list">
                         <li class="header-nav-left__item">
@@ -34,10 +228,10 @@
                             <a class="custom" href="">custom solutions</a>
                         </li>
                         <li class="header-nav-left__item">
-                            <a class="ownership" href="">ownership</a>
+                            <a class="ownership" href="">section</a>
                         </li>
                         <li class="header-nav-left__item">
-                            <a class="motorsport" href="">motorsport</a>
+                            <a class="motorsport" href="">lore</a>
                         </li>
                     </ul>
 
@@ -46,10 +240,10 @@
                 <div class="header-nav-right">
                     <ul class="header-nav-right__list">
                         <li class="header-nav-right__item">
-                            <a href="">dealerships</a>
+                            <a href="">enemy</a>
                         </li>
                         <li class="header-nav-right__item">
-                            <a href="">museum</a>
+                            <a href="">chapter</a>
                         </li>
                         <li class="header-nav-right__item">
                             <a href="">store</a>
@@ -57,15 +251,13 @@
                     </ul>
                     <div class="header-nav-right__icon">
                         <div class="header-nav-right__icon-box">
-                            <i class="msg-icon-header far fa-comments "></i>
-                            <i class="search-icon-header fas fa-search "></i>
                             <i class="bars-icon-header fas fa-bars"></i>
                         </div>
-                        
-                        
+
+
                     </div>
                 </div>
-                
+
             </div>
             <div class="maskHeader"></div>
 
@@ -115,7 +307,8 @@
                     </div>
                 </div>
                 <div class="side-bar-msg__input">
-                     <textarea form="query-form" id="input-text" name="" id="" cols="36" rows="2" placeholder="Hey, ask me something..."></textarea>
+                    <textarea form="query-form" id="input-text" name="" id="" cols="36" rows="2"
+                        placeholder="Hey, ask me something..."></textarea>
                     <button>SEND</button>
                 </div>
             </div>
@@ -173,36 +366,11 @@
                                 <li class="bars-overplay-lan"><a href="">CHINESE</a> </li>
                                 <li class="bars-overplay-lan"><a href="">JAPANESE</a> </li>
                                 <li class="bars-overplay-lan"><a href="">VIETNAM</a> </li>
-                                <li class="bars-overplay-lan"><a href="">RUSSIAN</a> </li>          
+                                <li class="bars-overplay-lan"><a href="">RUSSIAN</a> </li>
                             </ul>
-                        </div>
-                        <div class="bars-overplay-col">
-                            <span class="bars-overplay-tittle">SOCIAL</span>
-                            <ul class="bars-overplay-setting">
-                                <li class="bars-overplay-social"><a href=""><i class="fab fa-facebook-f"></i></a> </li>
-                                <li class="bars-overplay-social"><a href=""><i class="fab fa-instagram"></i></i></a> </li>
-                                <li class="bars-overplay-social"><a href=""><i class="fab fa-twitter"></i></i></a> </li>
-                                <li class="bars-overplay-social"><a href=""><i class="fab fa-tiktok"></i></a> </li>
-                                <li class="bars-overplay-social"><a href=""><i class="fab fa-linkedin-in"></i></a> </li>
-                            </ul>
-                        </div>
-                        <div class="bars-overplay-col">
-                            <span class="bars-overplay-tittle bars-overplay-tittle-setting">SETTING</span>
-                            <div class="bars-overplay-set">
-                                <div class="bars-overplay-set__item">
-                                    <span>TEXT SIZE</span>
-                                    <i class="fas fa-minus icon"></i>
-                                    <i class="fas fa-plus icon active"></i>
-                                </div>
-                                <div class="bars-overplay-set__item">
-                                    <span>TRANSITIONS</span>
-                                    <i class="fas fa-check icon active"></i>
-                                    <i class="fas fa-times icon"></i>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div> 
+                </div>
 
                 <div class="bars-overplay-mcontainer">
                     <div class="bars-overplay-mcontainer-nav">
@@ -211,13 +379,13 @@
                                 <div class="nav-item-box">
                                     <span class="mmodels">MODELS</span>
                                     <i class="fas fa-chevron-right"></i>
-                                </div>   
+                                </div>
                             </li>
                             <li class="nav-item">
                                 <div class="nav-item-box">
                                     <span class="mmodels">MODELS</span>
                                     <i class="fas fa-chevron-right"></i>
-                                </div>    
+                                </div>
                             </li>
 
                             <li class="nav-item">
@@ -236,26 +404,26 @@
 
                             <li class="nav-item">
                                 <div class="nav-item-box">
-                                    <span class="mmotorsport">MOTORSPORT</span>
+                                    <span class="mmotorsport">SECTION</span>
                                     <i class="fas fa-chevron-right"></i>
                                 </div>
                             </li>
 
                             <li class="nav-item">
                                 <div class="nav-item-box">
-                                    <span class="">DEALERSHIPS</span>
+                                    <span class="">CHAPTER</span>
                                 </div>
                             </li>
 
                             <li class="nav-item">
                                 <div class="nav-item-box">
-                                    <span class="">MUSEUM</span>
+                                    <span class="">ENEMY</span>
                                 </div>
                             </li>
 
                             <li class="nav-item">
                                 <div class="nav-item-box">
-                                    <span class="">STORE</span>
+                                    <span class="">LORE</span>
                                 </div>
                             </li>
 
@@ -324,90 +492,98 @@
                                                 <span class="menu-sdevice-back-logo">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271">
                                                         <g stroke-width="1.5" transform="translate(-1624 -187.923)">
-                                                            <path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path>
-                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675" transform="rotate(-90 935.432 -711.068)"></path>
+                                                            <path
+                                                                d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                                transform="translate(1623.5 187.345)"
+                                                                class="hexagon on-dark"></path>
+                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675"
+                                                                transform="rotate(-90 935.432 -711.068)"></path>
                                                         </g>
                                                     </svg>
                                                 </span>
                                                 <span class="menu-sdevice-back-text">BACK</span>
                                             </div>
                                         </li>
-                                        <li class="header-menu-item"> 
+                                        <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
                                                 <a class="maventador" href="">aventador</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
 
                                             <div id="maventador" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">AVENTADOR SVJ</a> </li>
-                                                    <li class="menu-sub-item"><a href="">AVENTADOR SVJ ROADSTER</a> </li>
-                                                    <li class="menu-sub-item"><a href="">AVENTADOR LP 780-4 ULTIMAE</a></li>
-                                                    <li class="menu-sub-item"><a href="">AVENTADOR LP 780-4 ULTIMAE ROADSTER</a></li>
+                                                    <li class="menu-sub-item"><a href="">AVENTADOR SVJ ROADSTER</a>
+                                                    </li>
+                                                    <li class="menu-sub-item"><a href="">AVENTADOR LP 780-4 ULTIMAE</a>
+                                                    </li>
+                                                    <li class="menu-sub-item"><a href="">AVENTADOR LP 780-4 ULTIMAE
+                                                            ROADSTER</a></li>
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li class="header-menu-item"> 
+                                        <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
-                                                <a class="mhuracan" href="">huracán</a> 
+                                                <a class="mhuracan" href="">huracán</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="mhuracan" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">HURACÁN STO</a> </li>
                                                     <li class="menu-sub-item"><a href="">HURACÁN EVO</a> </li>
                                                     <li class="menu-sub-item"><a href="">HURACÁN EVO SPYDER</a></li>
                                                     <li class="menu-sub-item"><a href="">HURACÁN EVO RWD</a></li>
                                                     <li class="menu-sub-item"><a href="">HURACÁN EVO RWD SPYDER</a></li>
-                                                    <li class="menu-sub-item"><a href="">HURACÁN EVO FLUO CAPSULE</a></li>
+                                                    <li class="menu-sub-item"><a href="">HURACÁN EVO FLUO CAPSULE</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li class="header-menu-item"> 
+                                        <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
-                                                <a class="murus" href="">urus</a> 
+                                                <a class="murus" href="">urus</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="murus" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">URUS</a> </li>
                                                     <li class="menu-sub-item"><a href="">URUS PEARL CAPSULE</a> </li>
                                                     <li class="menu-sub-item"><a href="">URUS GRAPHITE CAPSULE</a></li>
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li class="header-menu-item"> 
+                                        <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
-                                                <a class="mpre" href="">pre-owned</a> 
+                                                <a class="mpre" href="">pre-owned</a>
                                             </div>
                                         </li>
-                                        <li class="header-menu-item"> 
+                                        <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
                                                 <a class="mlimited" href="">limited series</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="mlimited" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">SIÁN FKP 37</a> </li>
                                                     <li class="menu-sub-item"><a href="">SIÁN ROADSTER</a> </li>
                                                     <li class="menu-sub-item"><a href="">COUNTACH LPI 800-4</a></li>
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li class="header-menu-item"> 
+                                        <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
                                                 <a class="mconcept" href="">concept</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="mconcept" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">TERZO MILLENNIO</a> </li>
                                                     <li class="menu-sub-item"><a href="">ASTERION</a> </li>
                                                     <li class="menu-sub-item"><a href="">ESTOQUE</a></li>
                                                 </ul>
                                             </div>
                                         </li>
-                                            
+
                                     </ul>
                                 </div>
                             </div>
@@ -419,8 +595,12 @@
                                                 <span class="menu-sdevice-back-logo">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271">
                                                         <g stroke-width="1.5" transform="translate(-1624 -187.923)">
-                                                            <path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path>
-                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675" transform="rotate(-90 935.432 -711.068)"></path>
+                                                            <path
+                                                                d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                                transform="translate(1623.5 187.345)"
+                                                                class="hexagon on-dark"></path>
+                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675"
+                                                                transform="rotate(-90 935.432 -711.068)"></path>
                                                         </g>
                                                     </svg>
                                                 </span>
@@ -453,8 +633,12 @@
                                                 <span class="menu-sdevice-back-logo">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271">
                                                         <g stroke-width="1.5" transform="translate(-1624 -187.923)">
-                                                            <path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path>
-                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675" transform="rotate(-90 935.432 -711.068)"></path>
+                                                            <path
+                                                                d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                                transform="translate(1623.5 187.345)"
+                                                                class="hexagon on-dark"></path>
+                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675"
+                                                                transform="rotate(-90 935.432 -711.068)"></path>
                                                         </g>
                                                     </svg>
                                                 </span>
@@ -483,15 +667,17 @@
                                         </li>
                                         <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
-                                                <a class="massistanceandmaintenance" href="">assistance and maintenance</a>
+                                                <a class="massistanceandmaintenance" href="">assistance and
+                                                    maintenance</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="massistanceandmaintenance" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">ASSISTANCE</a> </li>
                                                     <li class="menu-sub-item"><a href="">WARRANTY</a> </li>
                                                     <li class="menu-sub-item"><a href="">CARE PROGRAM</a></li>
-                                                    <li class="menu-sub-item"><a href="">CERTIFIED BODY SHOP PROGRAM</a></li>
+                                                    <li class="menu-sub-item"><a href="">CERTIFIED BODY SHOP PROGRAM</a>
+                                                    </li>
                                                     <li class="menu-sub-item"><a href="">RECALL CAMPAIGN</a> </li>
                                                 </ul>
                                             </div>
@@ -507,8 +693,12 @@
                                                 <span class="menu-sdevice-back-logo">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271">
                                                         <g stroke-width="1.5" transform="translate(-1624 -187.923)">
-                                                            <path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path>
-                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675" transform="rotate(-90 935.432 -711.068)"></path>
+                                                            <path
+                                                                d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                                transform="translate(1623.5 187.345)"
+                                                                class="hexagon on-dark"></path>
+                                                            <path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675"
+                                                                transform="rotate(-90 935.432 -711.068)"></path>
                                                         </g>
                                                     </svg>
                                                 </span>
@@ -521,28 +711,31 @@
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="msupertrofeo" class="menu-sub-sdevice-item">
-                                                <ul >
-                                                    <li class="menu-sub-item" ><a href="">SUPER TROFEO EUROPE</a> </li>
-                                                    <li class="menu-sub-item"><a href="">SUPER TROFEO NORTH AMERICA</a> </li>
-                                                    <li class="menu-sub-item"><a href="">SUPER TROFEO WORLD FINAL</a></li>
+                                                <ul>
+                                                    <li class="menu-sub-item"><a href="">SUPER TROFEO EUROPE</a> </li>
+                                                    <li class="menu-sub-item"><a href="">SUPER TROFEO NORTH AMERICA</a>
+                                                    </li>
+                                                    <li class="menu-sub-item"><a href="">SUPER TROFEO WORLD FINAL</a>
+                                                    </li>
                                                     <li class="menu-sub-item"><a href="">CALENDAR AND RESULTS</a></li>
                                                 </ul>
                                             </div>
                                         </li>
                                         <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
-                                                <a class="gt3" href="">gt3</a> 
+                                                <a class="gt3" href="">gt3</a>
                                             </div>
                                         </li>
                                         <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
-                                                <a class="mmotorsportmodels" href="">motorsport models</a> 
+                                                <a class="mmotorsportmodels" href="">motorsport models</a>
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="mmotorsportmodels" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">HURACÁN GT3 EVO</a> </li>
-                                                    <li class="menu-sub-item"><a href="">HURACÁN SUPER TROFEO EVO2</a> </li>
+                                                    <li class="menu-sub-item"><a href="">HURACÁN SUPER TROFEO EVO2</a>
+                                                    </li>
                                                     <li class="menu-sub-item"><a href="">SC18 ALSTON</a></li>
                                                     <li class="menu-sub-item"><a href="">SC18 ALSTON</a></li>
                                                     <li class="menu-sub-item"><a href="">SC20</a> </li>
@@ -552,7 +745,7 @@
                                         </li>
                                         <li class="header-menu-item">
                                             <div class="menu-sdevice-box">
-                                                <a class="mdrivers" href="">drivers</a> 
+                                                <a class="mdrivers" href="">drivers</a>
                                             </div>
                                         </li>
                                         <li class="header-menu-item">
@@ -566,9 +759,10 @@
                                                 <i class="fas fa-chevron-right"></i>
                                             </div>
                                             <div id="mexperience" class="menu-sub-sdevice-item">
-                                                <ul >
+                                                <ul>
                                                     <li class="menu-sub-item"><a href="">LAMBORGHINI PILOTA</a> </li>
-                                                    <li class="menu-sub-item"><a href="">SUPER TROFEO VIP PROGRAM</a> </li>
+                                                    <li class="menu-sub-item"><a href="">SUPER TROFEO VIP PROGRAM</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -579,17 +773,26 @@
                                         </li>
                                     </ul>
                                 </div>
-                        </div>
+                            </div>
                         </div>
 
-                        
+
                     </div>
                     <div class="bars-overplay-mcontainer-social">
                         <div class="social-item">
                             <div class="social-item-container">
                                 <div class="social-item-content">
                                     <span class="social-item-logo">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271" class="exagon up"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path class="background exagon" d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)"></path><path class="foreground up" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-180 828.432 109.068)"></path></g></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"
+                                            class="exagon up">
+                                            <g stroke-width="1.5" transform="translate(-1624 -187.923)">
+                                                <path class="background exagon"
+                                                    d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                    transform="translate(1623.5 187.345)"></path>
+                                                <path class="foreground up" d="M0 0l7.432 5.674L14.864 0"
+                                                    transform="rotate(-180 828.432 109.068)"></path>
+                                            </g>
+                                        </svg>
                                     </span class="social-item-text">
                                     <span class="social-item-text">ENGLISH</span>
                                 </div>
@@ -612,7 +815,16 @@
                             <div class="social-item-container">
                                 <div class="social-item-content">
                                     <span class="social-item-logo">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271" class="exagon up"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path class="background exagon" d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)"></path><path class="foreground up" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-180 828.432 109.068)"></path></g></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"
+                                            class="exagon up">
+                                            <g stroke-width="1.5" transform="translate(-1624 -187.923)">
+                                                <path class="background exagon"
+                                                    d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                    transform="translate(1623.5 187.345)"></path>
+                                                <path class="foreground up" d="M0 0l7.432 5.674L14.864 0"
+                                                    transform="rotate(-180 828.432 109.068)"></path>
+                                            </g>
+                                        </svg>
                                     </span>
                                     <span class="social-item-text">SOCIAL</span>
 
@@ -639,17 +851,17 @@
                 <div id="models" class="header-menu-item">
                     <div class="header-menu-item__list">
                         <ul>
-                            <li ><a class="aventador" href="">aventador</a></li>
-                            <li ><a class="huracan" href="">huracán</a> </li>
-                            <li ><a class="urus" href="">urus</a> </li>
-                            <li ><a class="pre" href="">pre-owned</a> </li>
-                            <li ><a class="limited" href="">limited series</a></li>
-                            <li ><a class="concept" href="">concept</a></li>
+                            <li><a class="aventador" href="">aventador</a></li>
+                            <li><a class="huracan" href="">huracán</a> </li>
+                            <li><a class="urus" href="">urus</a> </li>
+                            <li><a class="pre" href="">pre-owned</a> </li>
+                            <li><a class="limited" href="">limited series</a></li>
+                            <li><a class="concept" href="">concept</a></li>
                         </ul>
                     </div>
                     <div class="menu-sub">
                         <div id="aventador" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">AVENTADOR SVJ</a> </li>
                                 <li><a href="">AVENTADOR SVJ ROADSTER</a> </li>
                                 <li><a href="">AVENTADOR LP 780-4 ULTIMAE</a></li>
@@ -657,7 +869,7 @@
                             </ul>
                         </div>
                         <div id="huracan" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">HURACÁN STO</a> </li>
                                 <li><a href="">HURACÁN EVO</a> </li>
                                 <li><a href="">HURACÁN EVO SPYDER</a></li>
@@ -667,21 +879,21 @@
                             </ul>
                         </div>
                         <div id="urus" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">URUS</a> </li>
                                 <li><a href="">URUS PEARL CAPSULE</a> </li>
                                 <li><a href="">URUS GRAPHITE CAPSULE</a></li>
                             </ul>
                         </div>
                         <div id="limited" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">SIÁN FKP 37</a> </li>
                                 <li><a href="">SIÁN ROADSTER</a> </li>
                                 <li><a href="">COUNTACH LPI 800-4</a></li>
                             </ul>
                         </div>
                         <div id="concept" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">TERZO MILLENNIO</a> </li>
                                 <li><a href="">ASTERION</a> </li>
                                 <li><a href="">ESTOQUE</a></li>
@@ -710,7 +922,7 @@
                     </div>
                     <div class="menu-sub">
                         <div id="assistanceandmaintenance" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">ASSISTANCE</a> </li>
                                 <li><a href="">WARRANTY</a> </li>
                                 <li><a href="">CARE PROGRAM</a></li>
@@ -734,7 +946,7 @@
                     </div>
                     <div class="menu-sub">
                         <div id="supertrofeo" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">SUPER TROFEO EUROPE</a> </li>
                                 <li><a href="">SUPER TROFEO NORTH AMERICA</a> </li>
                                 <li><a href="">SUPER TROFEO WORLD FINAL</a></li>
@@ -742,7 +954,7 @@
                             </ul>
                         </div>
                         <div id="motorsportmodels" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">HURACÁN GT3 EVO</a> </li>
                                 <li><a href="">HURACÁN SUPER TROFEO EVO2</a> </li>
                                 <li><a href="">SC18 ALSTON</a></li>
@@ -752,7 +964,7 @@
                             </ul>
                         </div>
                         <div id="experience" class="menu-sub-item">
-                            <ul >
+                            <ul>
                                 <li><a href="">LAMBORGHINI PILOTA</a> </li>
                                 <li><a href="">SUPER TROFEO VIP PROGRAM</a> </li>
                             </ul>
@@ -762,224 +974,538 @@
             </div>
         </div>
         <div id="content">
-            <div class="slider">
-                <div class="slides">
+            <div class="main">
+                <div class="slider">
+                    <div class="slides">
 
-                    <input type="radio" name="radio-btn" id="radio1">
-                    <input type="radio" name="radio-btn" id="radio2">
-                    <input type="radio" name="radio-btn" id="radio3">
-                    
-                    <div class="slide first">
-                      <img src="./img/countach_hp.webp" alt="">
-                      <div class="slide-info">
-                          <span class="slide-name name1">COUNTACH LPI 800-4</span>
-                          <span class="slide-intro intro1">FUTURE IS OUR LEGACY</span>
-                          <a href="">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path><path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-90 935.432 -711.068)"></path></g></svg>
-                          </a>
-                      </div>
-                    <div class="bg-overplay"></div>
+                        <input type="radio" name="radio-btn" id="radio1">
+                        <input type="radio" name="radio-btn" id="radio2">
+                        <input type="radio" name="radio-btn" id="radio3">
 
-                    </div>
-                    <div class="slide second">
-                      <img src="./img/ultimae_roadster_hp.webp" alt="">
-                      <div class="slide-info">
-                          <span class="slide-name name2">AVENTADOR LP 740-4 ULTIMATE ROADSTER</span>
-                          <span class="slide-intro intro2">IT TAKES TIME TO BECOME TIMELESS</span>
-                          <a href="">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path><path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-90 935.432 -711.068)"></path></g></svg>
-                          </a>
-                      </div>
-                    <div class="bg-overplay"></div>
-
-                    </div>
-                    <div class="slide third">
-                      <img src="./img/urus_graphite_hp.webp" alt="">
-                      <div class="slide-info">
-                          <span class="slide-name name3">URUS GRAPHITE CAPSULE</span>
-                          <span class="slide-intro intro3">UNLOCK ANY ROAD</span>
-                          <a href="">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path><path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-90 935.432 -711.068)"></path></g></svg>
-                          </a>
-                      </div>
-                    <div class="bg-overplay"></div>
-
-                    </div>
-                    <div class="navigation-auto">
-                      <label for="radio1" class="auto-btn auto-btn1"></label>
-                      <label for="radio2" class="auto-btn auto-btn2"></label>
-                      <label for="radio3" class="auto-btn auto-btn3"></label>
-                    </div>
-                  </div>
-            </div>
-
-            <div class="slider2">
-                <div class="slides2">
-                    <div class="slide2" data-index="0">
-                        <div class="slide2-skew">
-                            <div class="skew-fix">
-                                <img src="./img/slide2.webp" alt="">
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="slide2" data-index="1">
-                        <div class="slide2-skew">
-                            <div class="skew-fix">
-                                <img src="./img/slide22.webp" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide2 active" data-index="2">
-                        <div class="slide2-skew">
-                            <div class="skew-fix">
-                                <img src="./img/slide222.webp" alt="">
-                            </div>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="slider2-navigation">
-                    <span class="tittle">MODELS</span>
-                    <div class="slider2-navigation-btn">
-                        <span class="btn btn-left">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path><path class="icon on-dark" d="M0 5.675L7.432 0l7.432 5.675" transform="rotate(-90 935.432 -711.068)"></path></g></svg>
-                        </span>
-
-                        <span class="btn btn-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path><path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-90 935.432 -711.068)"></path></g></svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="slide2-text-container">
-                    <div class="slogan1 text-container">
-                        <span class="name-car">AVENTADOR</span>
-                        <span class="slogan-car">REAL EMOTIONS SHAPE THE FUTURE</span>
-                    </div>
-
-                    <div class="slogan2 text-container active">
-                        <span class="name-car">URUS</span>
-                        <span class="slogan-car">UNLOCK ANY ROAD</span>
-                    </div>
-
-                    <div class="slogan0 text-container">
-                        <span class="name-car">HURACÁN</span>
-                        <span class="slogan-car">UNLOCK ANY ROADBASED ON A TRUE STORY</span>
-                    </div>
-                    <div class="slider2-explore">
-                        <span class="slider2-explore-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path><g class="icon on-dark" transform="translate(627 -5248.5)"><path d="M0 0v15" transform="translate(1022.5 5458.5)"></path><path d="M0 0v15" transform="rotate(90 -2218 3248)"></path></g></g></svg>
-                        </span>
-                        <span class="slider2-explore-text">Explore the <br> models</span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="content-create">
-                <input type="radio" name="radio-btn-create" id="radioA" checked>
-                <input type="radio" name="radio-btn-create" id="radioH">
-                <input type="radio" name="radio-btn-create" id="radioU">
-                <div class="content-create-container aventador">
-                    <div class="content-create-info">
-                        <span class="content-create-info__text1">CONFIGURATOR</span>
-                        <span class="content-create-info__text2">CREATE YOUR AVENTADOR </span>
-                    </div>
-                    <div class="content-create-img">
-                        <img src="./img/create-aventador.webp" alt="">
-                    </div>
-                </div>
-
-                <div class="content-create-container huracan">
-                    <div class="content-create-info">
-                        <span class="content-create-info__text1">CONFIGURATOR</span>
-                        <span class="content-create-info__text2">CREATE YOUR HURCAN </span>
-                    </div>
-                    <div class="content-create-img">
-                        <img src="./img/create-huracan.webp" alt="">
-                    </div>
-                </div>
-
-                <div class="content-create-container urus">
-                    <div class="content-create-info">
-                        <span class="content-create-info__text1">CONFIGURATOR</span>
-                        <span class="content-create-info__text2">CREATE YOUR URUS </span>
-                    </div>
-                    <div class="content-create-img">
-                        <img src="./img/create-urus.webp" alt="">
-                    </div>
-                </div>
-
-                <div class="content-create-nav">
-                    <div class="content-create-nav__logo">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon light"></path><path class="icon light" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-90 935.432 -711.068)"></path></g></svg>
-                    </div>
-                    <div class="content-create-nav__choose">
-                        <label for="radioA" class="content-create-nav__choose-name active">Aventador</label>
-                        <label for="radioH" class="content-create-nav__choose-name">Huracan</label>
-                        <label for="radioU" class="content-create-nav__choose-name">Urus</label>
-                    </div>
-                </div>
-            </div>
-            <div class="content-locator">
-                <div class="content-locator-img">
-                    <img src="./img/locator.webp" alt="">
-                </div>
-                <div class="content-locator-info">
-                    <span class="content-locator-info-text1">DEALER LOCATOR</span>
-                    <span class="content-locator-info-text2">FIND YOUR<br>COUNTRY DEALER </span>
-                    <a href="" class="content-locator-info-logo">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271"><g stroke-width="1.5" transform="translate(-1624 -187.923)"><path d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z" transform="translate(1623.5 187.345)" class="hexagon on-dark"></path><path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0" transform="rotate(-90 935.432 -711.068)"></path></g></svg>
-                    </a>
-                </div>
-                <div class="content-locator__overplay"></div>
-            </div>
-            <div class="content-news">
-                <div class="grid wide">
-                    <div class="content-news-main">
-                        <span class="content-news-main__text1">NEWS</span>
-                        <span class="content-news-main__text2">LAMBORGHINI WORD</span>
-                        <a href="#" class="content-news-main__img">
-                            <img src="./img/newsmain.webp" alt="">
-                        </a>
-                    </div>
-                    <div class="content-news-sub">
-                        <div class="row mobile">
-                            <div class="col c-6 l-12 m-12">
-                                <a href="" class="content-news-sub__img">
-                                    <img src="./img/newssub.webp" alt="">
+                        <div class="slide first">
+                            <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/33_i10.png"
+                                alt="">
+                            <div class="slide-info">
+                                <span class="slide-name name1">Side Story: IL Siracusano</span>
+                                <span class="slide-intro intro1">THE RIVAL</span>
+                                <a href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271">
+                                        <g stroke-width="1.5" transform="translate(-1624 -187.923)">
+                                            <path
+                                                d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                transform="translate(1623.5 187.345)" class="hexagon on-dark">
+                                            </path>
+                                            <path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0"
+                                                transform="rotate(-90 935.432 -711.068)"></path>
+                                        </g>
+                                    </svg>
                                 </a>
                             </div>
-                            <div class="col c-6 l-12 m-12">
-                                <div class="content-news-sub__text">
-                                    <div class="content-news-sub__text-date">12 JANUARY 2002</div>
-                                    <a href="" class="content-news-sub__text-name">NEW SALES RECORD IN 2021 FOR LAMBORGHINI</a>
-                                    <a href="" class="content-news-sub__text-btn">
-                                        <span>READ MORE</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <div class="bg-overplay"></div>
+
                         </div>
-                        <div class="row mobile content-news-sub-mg">
-                            <div class="col c-6 l-12 m-12">
-                                <a href="" class="content-news-sub__img">
-                                    <img src="./img/newssbu2.webp" alt="">
+                        <div class="slide second">
+                            <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/35_i05.png"
+                                alt="">
+                            <div class="slide-info">
+                                <span class="slide-name name2">Side Story: Where Vernal Winds Will Never Blow</span>
+                                <span class="slide-intro intro2">IT TAKES TIME TO BECOME TIMELESS</span>
+                                <a href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271">
+                                        <g stroke-width="1.5" transform="translate(-1624 -187.923)">
+                                            <path
+                                                d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                transform="translate(1623.5 187.345)" class="hexagon on-dark">
+                                            </path>
+                                            <path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0"
+                                                transform="rotate(-90 935.432 -711.068)"></path>
+                                        </g>
+                                    </svg>
                                 </a>
                             </div>
-                            <div class="col c-6 l-12 m-12">
-                                <div class="content-news-sub__text">
-                                    <div class="content-news-sub__text-date">11 JANUARY 2022</div>
-                                    <a href="" class="content-news-sub__text-name">AUTOMOBILI LAMBORGHINI AT PITTI IMMAGINE UOMO E BAMBINO</a>
-                                    <a href="" class="content-news-sub__text-btn">
-                                        <span>READ MORE</span>
-                                    </a>
-                                </div>
+                            <div class="bg-overplay"></div>
+
+                        </div>
+                        <div class="slide third">
+                            <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/35_i15.png"
+                                alt="">
+                            <div class="slide-info">
+                                <span class="slide-name name3">Side Story: A Death In Chunfen</span>
+                                <span class="slide-intro intro3">UNLOCK ANY ROAD</span>
+                                <a href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.464 58.271">
+                                        <g stroke-width="1.5" transform="translate(-1624 -187.923)">
+                                            <path
+                                                d="M50.464 43.992L25.732 58.271 1 43.992V15.434L25.732 1.155l24.732 14.279z"
+                                                transform="translate(1623.5 187.345)" class="hexagon on-dark">
+                                            </path>
+                                            <path class="icon on-dark" d="M0 0l7.432 5.674L14.864 0"
+                                                transform="rotate(-90 935.432 -711.068)"></path>
+                                        </g>
+                                    </svg>
+                                </a>
                             </div>
+                            <div class="bg-overplay"></div>
+
+                        </div>
+                        <div class="navigation-auto">
+                            <label for="radio1" class="auto-btn auto-btn1"></label>
+                            <label for="radio2" class="auto-btn auto-btn2"></label>
+                            <label for="radio3" class="auto-btn auto-btn3"></label>
                         </div>
                     </div>
+                </div>
 
-                    <div class="content-btn-container">
-                        <a href="" class="content-btn-all">
-                            <span>SEE ALL</span>
-                        </a>
+                <div class="content-news">
+                    <p style="font-size: 50px; color: white; text-align: center;">CHARACTERS DETAIL</p>
+                    <div class="container">
+                        <div id="carousel">
+                            <div id="test1" class="popup">
+                                This is a test message
+                                <span class="cancel" id='cancel' onclick="closePopup1()">x</span>
+                            </div>
+                            <div class="carousel_card" onclick="openPopup1();"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/30_i12.png')">
+                                <p>1</p>
+
+                            </div>
+                            <div id="test2" class="popup">
+                                This is a test message
+                                <span class="cancel" id='cancel' onclick="closePopup2()">x</span>
+                            </div>
+                            <div class="carousel_card" onclick="openPopup2();"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/23_I11.png')">
+                                <p>2</p>
+                            </div>
+                            <div class="carousel_card"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/32_i18.png')">
+                                <p>3</p>
+                            </div>
+                            <div id="test4" class="popup">
+                                <div class="char_card blue">
+                                    <div class="additional">
+                                        <div class="user-card">
+                                            <div class="level center" style="margin-top: 7%;">
+                                                Level 90
+                                            </div>
+                                            <svg width="110" height="110" viewBox="0 0 250 250"
+                                                xmlns="http://www.w3.org/2000/svg" role="img"
+                                                aria-labelledby="title desc" class="center">
+                                                <defs>
+                                                    <clipPath id="scene">
+                                                        <circle cx="125" cy="125" r="115" />
+                                                    </clipPath>
+                                                    <clipPath id="lips">
+                                                        <path
+                                                            d="M 106,132 C 113,127 125,128 125,132 125,128 137,127 144,132 141,142  134,146  125,146  116,146 109,142 106,132 Z" />
+                                                    </clipPath>
+                                                    <img class="chara-image"
+                                                        src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/characters/char_1028_texas2_1.png">
+                                                </defs>
+
+                                            </svg>
+                                            <div class="points center"
+                                                style="margin-bottom: 2%; text-align: center; font-size: 2.5em;">
+                                                Full potential
+                                            </div>
+                                        </div>
+                                        <div class="more-info">
+                                            <h1 style="font-size: 3em;">TEXAS</h1>
+                                            <div class="coords">
+                                                <span>Group Name</span>
+                                                <span>Penguin Logistic</span>
+                                            </div>
+                                            <div class="coords">
+                                                <span>Position/Role</span>
+                                                <span>Melee, Fast-Redeploy & DPS</span>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Class</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/classes/black/icon_profession_specialist_large.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value" style="position: relative;">Specialist</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 1</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_texas2_1.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Silent Drizzle</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 2</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_texas2_2.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Endless<br />Downpour</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 3</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_texas2_3.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Torrential</br>Sword Rain</div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: -91%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">Greatly Reduced Redeployment Time</div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 11%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">After deployment, ATK +25%. Attacks Silence the
+                                                        targets for 3
+                                                        seconds and the target receives 200 Arts damage every
+                                                        second for the duration of the effect</div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 4%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">After deployment, immediately deal 120% Arts
+                                                        damage
+                                                        to all
+                                                        nearby enemies and inflict -10% RES to them for 8 seconds;<br />
+                                                        ATK +20%, attacks hit 2 times and deal Arts damage</div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 2%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">After deployment, immediately deal 100% Arts
+                                                        damage 2
+                                                        times
+                                                        to all nearby enemies and Stun them for 1 seconds.
+                                                        Thereafter, activate Sword Rain every second against 2 different
+                                                        targets
+                                                        within range, dealing 70% Arts damage and
+                                                        Stunning the targets for 0.2 seconds</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="general" style="background: darkgray;">
+                                        <h1 style="font-size: 3em;">Texas the Omertosa</h1>
+                                        <p style="font-size: 1em;">
+                                            又见面了，博士。叙拉古的雨季容易弄湿尾巴，这里的环境更舒适。别担心，快递业务能天使她们会继续受理，不过，如果仍有指派给我个人的任务，我也会执行。</p>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/factions/logo_penguin.png">
+                                        <span class="more">Mouse over the card for more info</span>
+                                    </div>
+                                </div>
+                                <span class="cancel" id='cancel' onclick="closePopup4()">x</span>
+                            </div>
+                            <div class="carousel_card" onclick="openPopup4();"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/33_i02.png')">
+                                <p>4</p>
+                            </div>
+                            <div class="carousel_card"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/35_i04.png')">
+                                <p>5</p>
+                            </div>
+                            <div id="test6" class="popup">
+                                <div class="char_card pink">
+                                    <div class="additional">
+                                        <div class="user-card">
+                                            <div class="level center" style="margin-top: 7%;">
+                                                Level 90
+                                            </div>
+                                            <svg width="110" height="110" viewBox="0 0 250 250"
+                                                xmlns="http://www.w3.org/2000/svg" role="img"
+                                                aria-labelledby="title desc" class="center">
+                                                <defs>
+                                                    <clipPath id="scene">
+                                                        <circle cx="125" cy="125" r="115" />
+                                                    </clipPath>
+                                                    <clipPath id="lips">
+                                                        <path
+                                                            d="M 106,132 C 113,127 125,128 125,132 125,128 137,127 144,132 141,142  134,146  125,146  116,146 109,142 106,132 Z" />
+                                                    </clipPath>
+                                                    <img class="chara-image" style="margin-left: -15%;"
+                                                        src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/characters/char_4080_lin_1.png">
+                                                </defs>
+
+                                            </svg>
+                                            <div class="points center"
+                                                style="margin-bottom: 2%; text-align: center; font-size: 2.5em;">
+                                                Full potential
+                                            </div>
+                                        </div>
+                                        <div class="more-info">
+                                            <h1 style="font-size: 3em;">LIN YUSHIA</h1>
+                                            <div class="coords">
+                                                <span>Group Name</span>
+                                                <span>Lungmen</span>
+                                            </div>
+                                            <div class="coords">
+                                                <span>Position/Role</span>
+                                                <span>Ranged, AoE & Defense</span>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Class</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/classes/black/icon_profession_caster_large.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value" style="position: relative;">Caster</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 1</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_lin_1.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Exquisite</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 2</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_lin_2.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Shelter</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 3</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_lin_3.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Shattered<br />Time</div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: -96%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">Does not attack normally, instead gain
+                                                        increased
+                                                        Defense(+200%) & Arts resistance(+20) when skill is inactive
+                                                        Deals Arts damage to all enemies within range during skill
+                                                        duration
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 1%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">Can switch between the default state and the
+                                                        following state:
+                                                        Slightly increase Attack Interval (+1 second), ATK +10%.
+                                                        Attacks
+                                                        Slow the
+                                                        targets for 0.7 seconds
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 4%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">Attack Speed +10, reduce Taunt level. Within
+                                                        the
+                                                        skill
+                                                        duration, grant Talent 1 effect to all allies within Attack
+                                                        Range
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 8%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">ATK +90%, expand Attack Range and shatter
+                                                        range of
+                                                        Crystal
+                                                        Barrier. Increase damage threshold of Crystal Barrier to
+                                                        1.5x. If an attack defeats an enemy, shatter the Crystal
+                                                        Barrier and
+                                                        immediately regenerate it
+                                                        Skill can be manually deactivated</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="general" style="background: darkgray;">
+                                        <h1 style="font-size: 3em;">Lin Yushia</h1>
+                                        <p style="font-size: 1em;">
+                                            博士，我们之前应该间接打过交道，现在终于有机会正式认识一下了。关于贫民区的感染者问题，由我们直接沟通会方便很多。</p>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/factions/logo_lungmen.png">
+                                        <span class="more">Mouse over the card for more info</span>
+                                    </div>
+                                </div>
+                                <span class="cancel" id='cancel' onclick="closePopup6()">x</span>
+                            </div>
+                            <div class="carousel_card" onclick="openPopup6();"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/35_i09_2.png')">
+                                <p>6</p>
+                            </div>
+                            <div class="carousel_card"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/35_i12.png')">
+                                <p>7</p>
+                            </div>
+                            <div class="carousel_card"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/ac18_05.png')">
+                                <p>8</p>
+                            </div>
+                            <div class="carousel_card"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/characters/char_113_cqbw_2.png')">
+                                <p>9</p>
+                            </div>
+                            <div id="test6" class="popup">
+                                <div class="char_card pink">
+                                    <div class="additional">
+                                        <div class="user-card">
+                                            <div class="level center" style="margin-top: 7%;">
+                                                Level 90
+                                            </div>
+                                            <svg width="110" height="110" viewBox="0 0 250 250"
+                                                xmlns="http://www.w3.org/2000/svg" role="img"
+                                                aria-labelledby="title desc" class="center">
+                                                <defs>
+                                                    <clipPath id="scene">
+                                                        <circle cx="125" cy="125" r="115" />
+                                                    </clipPath>
+                                                    <clipPath id="lips">
+                                                        <path
+                                                            d="M 106,132 C 113,127 125,128 125,132 125,128 137,127 144,132 141,142  134,146  125,146  116,146 109,142 106,132 Z" />
+                                                    </clipPath>
+                                                    <img class="chara-image" style="margin-left: -15%;"
+                                                        src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/characters/char_4080_lin_1.png">
+                                                </defs>
+
+                                            </svg>
+                                            <div class="points center"
+                                                style="margin-bottom: 2%; text-align: center; font-size: 2.5em;">
+                                                Full potential
+                                            </div>
+                                        </div>
+                                        <div class="more-info">
+                                            <h1 style="font-size: 3em;">LIN YUSHIA</h1>
+                                            <div class="coords">
+                                                <span>Group Name</span>
+                                                <span>Lungmen</span>
+                                            </div>
+                                            <div class="coords">
+                                                <span>Position/Role</span>
+                                                <span>Ranged, AoE & Defense</span>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Class</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/classes/black/icon_profession_caster_large.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value" style="position: relative;">Caster</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 1</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_lin_1.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Exquisite</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 2</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_lin_2.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Shelter</div>
+                                                </div>
+                                            </div>
+                                            <div class="stats" style="position: relative; bottom: -1rem; left: -15rem;">
+                                                <div>
+                                                    <div class="title">Skill 3</div>
+                                                    <img src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/skills/skill_icon_skchr_lin_3.png"
+                                                        style="width: 60px; height: 60px">
+                                                    <div class="value">Shattered<br />Time</div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: -96%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">Does not attack normally, instead gain
+                                                        increased
+                                                        Defense(+200%) & Arts resistance(+20) when skill is inactive
+                                                        Deals Arts damage to all enemies within range during skill
+                                                        duration
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 1%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">Can switch between the default state and the
+                                                        following state:
+                                                        Slightly increase Attack Interval (+1 second), ATK +10%.
+                                                        Attacks
+                                                        Slow the
+                                                        targets for 0.7 seconds
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 4%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">Attack Speed +10, reduce Taunt level. Within
+                                                        the
+                                                        skill
+                                                        duration, grant Talent 1 effect to all allies within Attack
+                                                        Range
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                style="display: flex; margin-top: 8%; margin-left: 23%; font-size: 13px;">
+                                                <div>
+                                                    <div class="title">ATK +90%, expand Attack Range and shatter
+                                                        range of
+                                                        Crystal
+                                                        Barrier. Increase damage threshold of Crystal Barrier to
+                                                        1.5x. If an attack defeats an enemy, shatter the Crystal
+                                                        Barrier and
+                                                        immediately regenerate it
+                                                        Skill can be manually deactivated</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="general" style="background: darkgray;">
+                                        <h1 style="font-size: 3em;">Lin Yushia</h1>
+                                        <p style="font-size: 1em;">
+                                            博士，我们之前应该间接打过交道，现在终于有机会正式认识一下了。关于贫民区的感染者问题，由我们直接沟通会方便很多。</p>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Aceship/Arknight-Images/main/factions/logo_lungmen.png">
+                                        <span class="more">Mouse over the card for more info</span>
+                                    </div>
+                                </div>
+                                <span class="cancel" id='cancel' onclick="closePopup6()">x</span>
+                            </div>
+                            <div class="carousel_card" onclick="openPopup6();"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/35_i15.png')">
+                                <p>10</p>
+                            </div>
+                            <div class="carousel_card"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/33_i17.png')">
+                                <p>11</p>
+                            </div>
+                            <div class="carousel_card"
+                                style="background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/24_i04.png')">
+                                <p>12</p>
+                            </div>
+                        </div>
+                        <div id="pagination">
+                            <div class="ball"></div>
+                            <div class="ball"></div>
+                            <div class="ball"></div>
+                        </div>
+                        <i id="leftArrow" class="arrow">L</i>
+                        <i id="rightArrow" class="arrow">R</i>
                     </div>
                 </div>
             </div>
@@ -1013,50 +1539,20 @@
                             <li class="footer-above-nav__item">
                                 <a href="">NEWSLETTER</a>
                             </li>
-                            
-                        </ul>
-                        <ul class="footer-above-social">
-                            <li class="footer-above-social__item">
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li class="footer-above-social__item">
-                                <a href=""><i class="fab fa-instagram"></i></a>
-                            </li>
-                            <li class="footer-above-social__item">
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li class="footer-above-social__item">
-                                <a href=""><i class="fab fa-youtube"></i></a>
-                            </li>
-                            <li class="footer-above-social__item">
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="footer-middle">The consumption and emissions values in the website refer to your geographical IP. This value might be unrealistic if you navigate using VPN or if the position of your Internet provider is imprecise. If you believe you are incorrectly geolocalized, contact your dealer to get valid consumption and emissions information in your area.
-                    </p>
-                    <p class="footer-copyright">Copyright © 2021 Automobili Lamborghini S.p.A. a sole shareholder company part of Audi Group.
-                    </br>
-                    All rights reserved. VAT no. IT 00591801204
-                    </p>
 
-                    <ul class="footer-bottom-social">
-                        <li class="footer-bottom-social__item">
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                        </li>
-                        <li class="footer-bottom-social__item">
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                        </li>
-                        <li class="footer-bottom-social__item">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                        </li>
-                        <li class="footer-bottom-social__item">
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                        </li>
-                        <li class="footer-bottom-social__item">
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                        </li>
-                    </ul>
+                        </ul>
+
+                    </div>
+                    <p class="footer-middle">The consumption and emissions values in the website refer to your
+                        geographical IP. This value might be unrealistic if you navigate using VPN or if the position of
+                        your Internet provider is imprecise. If you believe you are incorrectly geolocalized, contact
+                        your dealer to get valid consumption and emissions information in your area.
+                    </p>
+                    <p class="footer-copyright">Copyright © 2021 Automobili Lamborghini S.p.A. a sole shareholder
+                        company part of Audi Group.
+                        </br>
+                        All rights reserved. VAT no. IT 00591801204
+                    </p>
                 </div>
 
             </div>
@@ -1065,6 +1561,8 @@
 
 
     <script src="./js/main.js"></script>
+    <script src="./js/carousel.js"></script>
+    <script src="./js/popup.js"></script>
     <script>
         start();
     </script>
