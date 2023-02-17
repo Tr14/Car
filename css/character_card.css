@@ -8,6 +8,7 @@
     overflow: hidden;
     position: relative;
     margin: 1.5rem;
+    float: left;
 }
 
 .char_card h1 {
@@ -24,8 +25,8 @@
     z-index: 2;
 }
 
-.char_card.green .additional {
-    background: linear-gradient(#92bCa6, #A2CCB6);
+.char_card.cayman .additional {
+    background: linear-gradient(#1A512E, #63A91F);
 }
 
 .char_card.blue .additional {
@@ -34,6 +35,14 @@
 
 .char_card.pink .additional {
     background: linear-gradient(#9E768F, #9FA4C4);
+}
+
+.char_card.pale .additional {
+    background: linear-gradient(#EDD812, #766A65);
+}
+
+.char_card.darkblue .additional {
+    background: linear-gradient(#0652C5, #D4418E);
 }
 
 
